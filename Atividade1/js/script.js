@@ -1,6 +1,7 @@
-var dataUrl = "data.json",
+var dataUrl = "dados/menu.json",
     itensHtml = "item-snippet.html";
-    
+    //html;
+    //var htmlFinal;
 // função facilitadora para inserir HTML em um elemento
 function insereHtml(seletor, html) {
   var elemento = document.querySelector(seletor);
@@ -28,21 +29,18 @@ function constroiPagina(dados) {
   // construimos os itens agora
   $ajaxUtils.sendGetRequest(itensHtml, function(itensHtml) {
     for (var i = 0, max = dados.length; i < max; i++) {
-      var html = itensHtml,
-          nome = dados[i].name.first + " " + dados[i].name.last,
-          empresa = dados[i].company,
-          email = dados[i].email,
-          fone = dados[i].phone;
+          var html = itensHtml,
+          titulo = dados[i].titulo,
+          conteudo = dados[i].Conteudo;
           
-      html = inserePropriedade(html, "nome", nome);
-      html = inserePropriedade(html, "empresa", empresa);
-      html = inserePropriedade(html, "email", email);
-      html = inserePropriedade(html, "fone", fone);
+      html = inserePropriedade(html, "titulo", titulo);
+      html = inserePropriedade(html, "Conteudo", conteudo);
+
       
       htmlFinal += html;
     }
     htmlFinal += '</section>';
-    insereHtml("#content", htmlFinal);
+    insereHtml("#conteudo", htmlFinal);
   }, false); // não é um JSON
 }
 // vamos construir o sendGetRequest:
